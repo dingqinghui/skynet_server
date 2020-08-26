@@ -31,7 +31,13 @@ local self = connection
 function connection.heart()
     for nodename,addr in pairs(clustername) do
         if is_route_node(nodename) then
-            self.call(nodename,".nodeserver","ping",nodename,addr)
+            -- 只在ping中嗅探可连接/不可连接
+            local ok,ret = self.call(nodename,".nodeserver","ping",nodename,addr)
+            if ok then 
+                self.connect(nodename)
+            else
+                self.disconnect(nodename)
+            end
         end
     end
     skynet.timeout(HEART_TM,connection.heart)
@@ -59,19 +65,22 @@ end
 
 
 function connection.call(nodename,...)
-    local ret = xpcall(cluster.call,TRACEBACK,nodename,... ) 
-    if ret then 
-        self.connect(nodename)
-    else
-        self.disconnect(nodename)
-    end
-    return ret
+    -- 这里报错有可能是远程节点没有启动 或者 远程节点调用出错
+    return xpcall(cluster.call,TRACEBACK,nodename,... ) 
 end
 
 
+local CMD = {}
+function CMD.call(node,...)
+    print(node,...)
+    return connection.call(node,...)
+end
 
 
 skynet.start(function ()
+    skynet.dispatch("lua", function (_,_, cmd, ...)
+        skynet.retpack(CMD[cmd](...))
+    end)
 
     read_cluster_conf()
 
