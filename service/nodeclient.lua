@@ -2,12 +2,13 @@ local skynet =  require "skynet"
 local cluster = require "skynet.cluster"
 require "skynet.manager"
 
-local PING_TIME = 300
+local HEART_TM = 300
 
 local GETENV = skynet.getenv
+local TRACEBACK  = debug.traceback
 
 local clustername = {}
-local function initconf()
+local function read_cluster_conf()
     local config_name = GETENV "cluster"
     local f = assert(io.open(config_name))
     local source = f:read "*a"
@@ -16,55 +17,65 @@ local function initconf()
 end
 
 
-
-local lc = {}
-local function connect(nodename)
-    lc[nodename] = true
-    skynet.error("new connect nodename:",nodename)
-end
-
-local function disconnect(nodename)
-    lc[nodename] = nil
-    skynet.error("dis connect nodename:",nodename)
-end
-
-local function exist(nodename)
-    return lc[nodename]
-end
-
-
-local function call(nodename,...)
-    local errfunc = function (str)
-        if exist(nodename) then 
-            disconnect(nodename)
-        end
-    end
-    return xpcall(cluster.call,errfunc,nodename,... ) 
-end
-
 local function is_route_node(nodename)
     return nodename:sub(1,2) ~= "__" and nodename ~= SERVERNAME 
 end
 
 
-local function ping()
+local connection = {
+    __data = {}
+}
+
+local self = connection
+
+function connection.heart()
     for nodename,addr in pairs(clustername) do
         if is_route_node(nodename) then
-            local ret  = call(nodename,".nodeserver","ping",nodename,addr)
-            if ret and not exist(nodename) then 
-                connect(nodename)
-            end
+            self.call(nodename,".nodeserver","ping",nodename,addr)
         end
     end
-    skynet.timeout(PING_TIME,ping)
+    skynet.timeout(HEART_TM,connection.heart)
+end
+
+function connection.connect(nodename)
+    if self.exist(nodename) then 
+        return 
+    end
+    self.__data[nodename]  = true
+    skynet.error("new connect nodename:",nodename)
+end
+
+function connection.disconnect(nodename)
+    if not self.exist(nodename) then 
+        return 
+    end
+    self.__data[nodename] = nil
+    skynet.error("dis connect nodename:",nodename)
+end
+
+function connection.exist(nodename)
+    return self.__data[nodename]
 end
 
 
-skynet.start(function ()
-    -- 读取节点配置信息
-    initconf()
+function connection.call(nodename,...)
+    local ret = xpcall(cluster.call,TRACEBACK,nodename,... ) 
+    if ret then 
+        self.connect(nodename)
+    else
+        self.disconnect(nodename)
+    end
+    return ret
+end
 
-    ping()
+
+
+
+skynet.start(function ()
+
+    read_cluster_conf()
+
+    connection.heart()
 
     skynet.register(".nodeclient")
 end )

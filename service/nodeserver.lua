@@ -5,53 +5,57 @@ local cluster = require "skynet.cluster"
 local KEEP_LIVE_TM = 1100
 
 local clients = {
-    data = {}
+    __data = {}
 }
+local self = clients
 
-function clients.add(nodename,addr)
-    local data = clients.data
+function clients.connect(nodename,addr)
+    local data = self.__data
     data[nodename] = {
         nodename = nodename,
         addr = addr,
         tm = skynet.time()
     }
+
+    skynet.error(string.format("new node client connect name:%s addr:%s",nodename,addr ))
 end
 
-function clients.close(nodename)
-    local data = clients.data
+function clients.disconnect(nodename)
+    local data = self.__data
     data[nodename] = nil
+    skynet.error(string.format("node client disconnect name:%s ",nodename ))
 end
 
 
 function clients.update(nodename)
-    local data = clients.data
+    local data = self.__data
     data[nodename].tm = skynet.time()
 end
 
 function clients.exist(nodename)
-    local data = clients.data
+    local data = self.__data
     return data[nodename]
 end
 
 function clients.keeplive()
-    local data = clients.data
+    local data = self.__data
     local tm = skynet.time()
     for _,v in pairs(data) do
         if tm - v.tm >= KEEP_LIVE_TM then 
-            clients.close(v.nodename)
+            self.disconnect(v.nodename)
         end
     end
-    skynet.timeout(500,clients.keeplive)
+    skynet.timeout(500,self.keeplive)
 end
 
 
 
 local CMD = {}
 function CMD.ping(nodename,addr)
-    if clients.exist(nodename) then 
-        clients.update(nodename)
+    if self.exist(nodename) then 
+        self.update(nodename)
     else
-        clients.add(nodename,addr)
+        self.connect(nodename,addr)
     end
     return true
 end
