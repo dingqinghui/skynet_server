@@ -45,7 +45,6 @@ local function slaveinit()
         else
             setmetatable(db, {__index = function (_,cmd)
                 local f = function (...)
-                    skynet.error(cmd)
                     return db.con[cmd](db.con,...)
                 end
                 return f 

@@ -17,7 +17,9 @@ console_port = 8001
 
 cluster = "./config/loginname.lua"
 
-luaservice = luaservice ..  "./"  .. servername .. "/?.lua"
+
+luaservice = luaservice ..  "./"  .. servername .. "/?.lua;"
+lua_path = lua_path ..  "./"  .. servername .. "/?.lua;"
 
 
 redishost = "127.0.0.1" 

@@ -5,7 +5,7 @@ thread = 8
 logger = nil
 logpath = "."
 harbor = 0
-start = "client_main"	-- main script
+start = "clientmain"	-- main script
 bootstrap = "snlua bootstrap"	-- The service for bootstrap
 
 cpath = root.."cservice/?.so"
