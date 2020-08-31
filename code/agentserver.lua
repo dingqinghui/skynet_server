@@ -9,7 +9,6 @@ local msgimpl = require "msgimpl"
 
 
 local agentserver = {}
-local traceback = debug.traceback
 
 
 local WATCHDOG
@@ -20,7 +19,10 @@ local client_fd
 local cs = queue()
 local os_time = os.time
 ---------------------------------------
-
+local function traceback(err)
+	skynet.error("LUA ERROR: " .. tostring(err))
+	skynet.error(debug.traceback())
+end
 
 function agentserver.start(handler)
 
@@ -54,6 +56,7 @@ function agentserver.start(handler)
 	local function dispatch_message(session, address,data)
 		-- 解包
 		local message = xserialize.decode(data)
+		skynet.error(string.format("request::%s",table.dump(message)))
 		-- 消息分发
 		local ok, result = xpcall(msg_dispatch, traceback, message)
 		-- 检测消息队列超长
@@ -64,6 +67,7 @@ function agentserver.start(handler)
 		if not ok then
 			skynet.error("message excute error messageid:",message.id)
 		else
+			skynet.error(string.format("respond::%s",table.dump(result)))
 			send_package( xserialize.encode(result) )
 		end
 	end

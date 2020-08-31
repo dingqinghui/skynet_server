@@ -4,8 +4,8 @@ local xserialize  = require "xserialize"
 
 
 skynet.start(function ()
-    for i=1,1000 do
-        skynet.newservice("clientd")
+    for i=1,10 do
+        skynet.newservice("clientd",i)
     end
 
 end

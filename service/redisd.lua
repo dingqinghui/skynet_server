@@ -20,9 +20,8 @@ local function masterinit()
         end
 
         local ret = skynet.call(slaves[balance],"lua",cmd,...)
-        if ret ~= nil then 
-            skynet.retpack(ret)
-        end
+        skynet.retpack(ret)
+
     end)
 
 end
@@ -65,9 +64,7 @@ local function slaveinit()
     skynet.dispatch("lua", function (_,_, cmd, ...)
         --执行redis命令
         local ret = db[cmd](...)
-        if ret then 
-            skynet.retpack(ret)
-        end
+        skynet.retpack(ret)
     end)
 
 end
