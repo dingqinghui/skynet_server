@@ -4,7 +4,6 @@ local gateserver = require "snax.gateserver"
 local watchdog
 local connection = {}	-- fd -> connection : { fd , client, agent , ip, mode }
 local forwarding = {}	-- agent -> connection
-
 skynet.register_protocol {
 	name = "client",
 	id = skynet.PTYPE_CLIENT,
@@ -89,6 +88,7 @@ end
 function CMD.kick(source, fd)
 	gateserver.closeclient(fd)
 end
+
 
 function handler.command(cmd, source, ...)
 	local f = assert(CMD[cmd])

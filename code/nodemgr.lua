@@ -19,6 +19,15 @@ function nodemgr.call(...)
 end
 
 
+function nodemgr.get_server_channel()
+    return skynet.call(nodeserver,"lua","get_channel")
+end
+
+
+function nodemgr.get_client_channel()
+    return skynet.call(nodeclient,"lua","get_channel")
+end
+
 return nodemgr
 
 

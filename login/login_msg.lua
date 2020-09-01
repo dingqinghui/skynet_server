@@ -4,6 +4,7 @@ local msgdefine = require "msgdefine"
 local dbmgr = require "dbmgr"
 local rediskey = require "rediskey"
 local generator = require "generator" 
+local nodemgr  = require "nodemgr"
 
 local C2L = msgdefine.C2L
 local L2G = msgdefine.L2G
@@ -59,6 +60,7 @@ local function on_login(message)
 	local info = table.unserialize(ret)
 	if info.password ~= password then
 		skynet.error("password not correct")
+		return 
 	end
 
 	-- uuid -- token  expire
@@ -67,11 +69,19 @@ local function on_login(message)
 	dbmgr.set(key,token) 
 	dbmgr.expire(key,10) 
 
+
+	-- get game node gate addr from control
+	local ok ,addr = nodemgr.call("control",".gamemgr","balance_game")
+	if not ok then 
+		return 
+	end
 	local data = {
 		result = true,
 		uuid = info.uuid,
 		token = token,
+		gate_addr = addr,
 	}
+
 	return { id = L2G.LOGIN_RET, data = data}
 end 
 

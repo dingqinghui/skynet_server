@@ -1,7 +1,7 @@
 include "config.path"
 
 
-servername = "login"
+servername = "game"
 
 preload = "./code/preload.lua"	-- run preload.lua before every lua service run
 thread = 8
@@ -13,9 +13,9 @@ harbor = 0
 start = servername .. "_main"	-- main script
 bootstrap = "snlua bootstrap"	-- The service for bootstrap
 
-console_port = 8001
+console_port = 8002
 
-cluster = "./config/loginname.lua"
+cluster = "./config/gamename.lua"
 
 
 luaservice = luaservice ..  "./"  .. servername .. "/?.lua;"
@@ -26,7 +26,7 @@ redishost = "127.0.0.1"
 redisport = 6379
 
 
-servertype = 3
+servertype = 2
 serverid = 1
 
 -- daemon = "./skynet.pid"
