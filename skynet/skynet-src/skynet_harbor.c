@@ -41,7 +41,7 @@ skynet_harbor_start(void *ctx) {
 	skynet_context_reserve(ctx);
 	REMOTE = ctx;
 }
-
+ 
 void
 skynet_harbor_exit() {
 	struct skynet_context * ctx = REMOTE;

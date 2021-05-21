@@ -1,6 +1,27 @@
 {
     "editor.snippetSuggestions": "bottom",
     "files.associations": {
-        "random": "cpp"
-    }
+        "random": "cpp",
+        "algorithm": "c",
+        "functional": "c",
+        "initializer_list": "c",
+        "list": "c",
+        "memory": "c",
+        "type_traits": "c",
+        "typeinfo": "c",
+        "utility": "c",
+        "vector": "c",
+        "xhash": "c",
+        "xmemory0": "c",
+        "xstring": "c",
+        "xutility": "c",
+        "atomic": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "chrono": "c",
+        "thread": "c"
+    },
+    "screencastMode.fontSize": 20,
+    "window.zoomLevel": 0
 }

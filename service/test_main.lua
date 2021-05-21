@@ -6,16 +6,42 @@
 ]]
 
 local skynet = require "skynet"
-local xserialize = require "xserialize"
+require "skynet.manager"
 
 skynet.start(function()
-	skynet.error("Server start")
-	if not skynet.getenv "daemon" then
-		local console = skynet.newservice("console")
-	end
-	skynet.newservice("debug_console",8000)
-	skynet.newservice("simpledb")
+	
+	local maddr = skynet.self()
+	------------------------------------------------通过skynet core 注册名字--------------------------------------------------
+	-- -- 创建节点不会自动创建服务别名
+	-- print( skynet.localname(".test") )    -- 
+	-- -- 服务别名可以创建多个
+	-- skynet.register(".test")
+	-- print( skynet.localname(".test") )    -- 8
 
-	skynet.error("Watchdog listen on", 8888)
-	skynet.exit()
+	-- skynet.register(".test2")
+	-- print( skynet.localname(".test2") )    -- 8
+
+	--skynet.name(name, handle)
+
+	------------------------------------------------通过service_mgr 启动服务 注册名字--------------------------------------------------
+	--[[
+		create servuce  9
+		first query     9
+		second query    9
+	]]
+	-- 创建节点自动注册名字
+	skynet.timeout(10,function ()  
+		print( "create servuce" ,skynet.uniqueservice(true,"blank") )   -- 9
+		print( "second query" ,skynet.queryservice(true, "blank") )	    -- 9
+	end)
+
+	-- 多节点全局唯一
+	print("first query", skynet.queryservice(true, "blank") )	        -- 阻塞
+
+	-----------------------------------------------------注意------------------------------------------------------
+	--[[
+		service_mgr 和skynet core 有不同的结构存储名字。所以在service_mgr 注册的，调用skynet core时查询不到的。
+		print( skynet.localname("blank") )   -- 无输出
+	]]
+
 end)

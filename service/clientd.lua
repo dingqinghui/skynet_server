@@ -4,7 +4,7 @@ local xserialize  = require "xserialize"
 
 local index = ...
 
-local account = "dingqinghui" .. index
+local account = "dingqinghuis" .. index
 local password = "dqh19930227" .. index
 
 local fd
@@ -46,14 +46,22 @@ local function run(fd)
     while true do 
         register()
         login()
-        --skynet.exit()
+
+        skynet.exit()
         skynet.sleep(500)
     end
 end
 
+local function read_pack()
+    while true do 
+        local msg = socket.read(fd)
+        table.dump( xserialize.decode(msg) )
+    end 
+end 
 
 skynet.start(function ()
     fd = socket.open("0.0.0.0", 17000)
     skynet.fork(run,fd)
+    skynet.fork(read_pack)
 end
 )

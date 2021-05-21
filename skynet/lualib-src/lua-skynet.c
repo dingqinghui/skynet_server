@@ -260,8 +260,8 @@ send_message(lua_State *L, int source, int idx_type) {
 		if (dest_string) {
 			session = skynet_sendname(context, source, dest_string, type, session , msg, len);
 		} else {
-			session = skynet_send(context, source, dest, type, session , msg, len);
 		}
+			session = skynet_send(context, source, dest, type, session , msg, len);
 		break;
 	}
 	case LUA_TLIGHTUSERDATA: {
@@ -517,7 +517,7 @@ luaopen_skynet_core(lua_State *L) {
 		return luaL_error(L, "Init skynet context first");
 	}
 
-
+	
 	luaL_setfuncs(L,l,1);
 
 	luaL_setfuncs(L,l2,0);

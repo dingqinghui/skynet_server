@@ -34,6 +34,7 @@ function agentserver.start(handler)
 	
 	local function send_package(pack)
 		local package = string.pack(">s2", pack)
+		skynet.error("send_package",client_fd,package)
 		socket.write(client_fd, package)
 	end
 	

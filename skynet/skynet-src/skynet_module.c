@@ -72,7 +72,7 @@ _query(const char * name) {
 	}
 	return NULL;
 }
-
+ 
 static void *
 get_api(struct skynet_module *mod, const char *api_name) {
 	size_t name_size = strlen(mod->name);

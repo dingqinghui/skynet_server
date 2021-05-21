@@ -1,0 +1,130 @@
+<mxfile host="65bd71144e" modified="2021-01-14T02:15:57.558Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" version="13.10.0" etag="yy48n1K2hMem_j7v1au-" type="embed">
+    <diagram id="P8rTX9QXW7hszs-uEQbp" name="第 1 页">
+        <mxGraphModel dx="532" dy="617" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                    <mxGeometry y="650" width="250" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="670" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="shell" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="680" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="会话首进程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="37.5" y="710" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="670" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="进程1" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="155" y="680" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="前台进程组" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="167.5" y="710" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="控制终端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="90" y="620" width="77" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="640" width="250" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="386.5" y="670" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="shell" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="406.5" y="680" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="会话首进程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="404" y="710" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="516.5" y="670" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="进程1" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="521.5" y="680" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="前台进程组" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="534" y="710" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="控制终端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="456.5" y="620" width="77" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="10">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="270" y="750" as="sourcePoint"/>
+                        <mxPoint x="320" y="700" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="&lt;span style=&quot;font-size: 11px&quot;&gt;第一次fork&lt;/span&gt;&lt;br style=&quot;font-size: 11px&quot;&gt;&lt;span style=&quot;font-size: 11px&quot;&gt;保证进程不是进程组组长&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="260" y="780" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="fork1" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="680" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="970" width="250" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="383" y="990" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="fork1" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="403" y="1000" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="会话首进程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="400.5" y="1030" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="10" target="21">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="520" y="950" as="sourcePoint"/>
+                        <mxPoint x="570" y="900" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="无控制终端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="940" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="setsid 脱离原有会话" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="910" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="970" width="250" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="16.5" y="1000" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="fork1" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="36.5" y="1010" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="会话首进程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="34" y="1040" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="146.5" y="1000" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="fork2" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;strokeColor=#f0f0f0;" vertex="1" parent="1">
+                    <mxGeometry x="151.5" y="1010" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="前台进程组" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="164" y="1040" width="65" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="无控制终端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="73.5" y="950" width="110" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="endArrow=classic;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="21" target="28">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="250" y="970" as="sourcePoint"/>
+                        <mxPoint x="300" y="920" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="第二次 fork&lt;br&gt;防止进程重新打开终端" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="260" y="1070" width="100" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="一定要屏蔽SIGHUP信号。因为在第二次fork后，fork1进程退出。&lt;br&gt;fork1是会话首进程，会话首进程退出，导致SIGHUP信号发送给会话的所有前台进程。SIGHUP默认处理是退出进程。" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="33.5" y="1085" width="196.5" height="75" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

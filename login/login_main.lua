@@ -1,8 +1,9 @@
 local skynet =  require "skynet"
 local cluster = require "skynet.cluster"
 require "skynet.manager"
+local nodemgr = require "nodemgr"
 
-local nodemgr = require"nodemgr"
+
 
 local GETENV = skynet.getenv
 
@@ -24,6 +25,8 @@ skynet.start(function ()
 	}
 	skynet.call(watchdog, "lua", "start", conf)
 
+
+	nodemgr.status()
 
     skynet.exit()
     

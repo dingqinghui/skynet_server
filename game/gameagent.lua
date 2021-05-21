@@ -13,7 +13,7 @@ end
 
 function handler.connect()
     update_agent_cnt()
-
+    print("111111111111111")
 end
 
 function handler.disconnect()

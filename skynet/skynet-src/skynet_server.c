@@ -319,7 +319,6 @@ skynet_context_message_dispatch(struct skynet_monitor *sm, struct message_queue 
 			return skynet_globalmq_pop();
 		} else if (i==0 && weight >= 0) {
 			n = skynet_mq_length(q);
-			n >>= weight;
 		}
 		int overload = skynet_mq_overload(q);
 		if (overload) {

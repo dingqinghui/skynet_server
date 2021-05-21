@@ -124,7 +124,7 @@ timer_shift(struct timer *T) {
 	} else {
 		uint32_t time = ct >> TIME_NEAR_SHIFT;
 		int i=0;
-
+ 
 		while ((ct & (mask-1))==0) {
 			int idx=time & TIME_LEVEL_MASK;
 			if (idx!=0) {

@@ -28,6 +28,5 @@ redisport = 6379
 
 servertype = 3
 serverid = 1
-
--- daemon = "./skynet.pid"
+daemon = "./skynet.pid"
 -- snax_interface_g = "snax_g"

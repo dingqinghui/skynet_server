@@ -109,35 +109,36 @@ local coroutine_pool = setmetatable({}, { __mode = "kv" })
 local function co_create(f)
 	local co = tremove(coroutine_pool)
 	if co == nil then
-		co = coroutine_create(function(...)
-			f(...)
-			while true do
-				local session = session_coroutine_id[co]
-				if session and session ~= 0 then
-					local source = debug.getinfo(f,"S")
-					skynet.error(string.format("Maybe forgot response session %s from %s : %s:%d",
-						session,
-						skynet.address(session_coroutine_address[co]),
-						source.source, source.linedefined))
-				end
-				-- coroutine exit
-				local tag = session_coroutine_tracetag[co]
-				if tag ~= nil then
-					if tag then c.trace(tag, "end")	end
-					session_coroutine_tracetag[co] = nil
-				end
-				local address = session_coroutine_address[co]
-				if address then
-					session_coroutine_id[co] = nil
-					session_coroutine_address[co] = nil
-				end
+		co = coroutine_create(
+			function(...)
+				f(...)
+				while true do
+					local session = session_coroutine_id[co]
+					if session and session ~= 0 then
+						local source = debug.getinfo(f,"S")
+						skynet.error(string.format("Maybe forgot response session %s from %s : %s:%d",
+							session,
+							skynet.address(session_coroutine_address[co]),
+							source.source, source.linedefined))
+					end
+					-- coroutine exit
+					local tag = session_coroutine_tracetag[co]
+					if tag ~= nil then
+						if tag then c.trace(tag, "end")	end
+						session_coroutine_tracetag[co] = nil
+					end
+					local address = session_coroutine_address[co]
+					if address then
+						session_coroutine_id[co] = nil
+						session_coroutine_address[co] = nil
+					end
 
-				-- recycle co into pool
-				f = nil
-				coroutine_pool[#coroutine_pool+1] = co
-				-- recv new main function f
-				f = coroutine_yield "SUSPEND"
-				f(coroutine_yield())
+					-- recycle co into pool
+					f = nil
+					coroutine_pool[#coroutine_pool+1] = co
+					-- recv new main function f
+					f = coroutine_yield "SUSPEND"
+					f(coroutine_yield())
 			end
 		end)
 	else
@@ -731,6 +732,7 @@ function skynet.init_service(start)
 		skynet.send(".launcher","lua", "ERROR")
 		skynet.exit()
 	else
+
 		skynet.send(".launcher","lua", "LAUNCHOK")
 	end
 end
